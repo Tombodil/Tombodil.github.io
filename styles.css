@@ -1,0 +1,64 @@
+html, body {/*Utilized to stop a bug with older browsers, with this, text alignment will need to be set in non CSS text*/
+  margin:0;
+  padding:0;
+  overflow-y:auto;
+}
+img {
+      border: 0;
+}
+body,td,th {
+	font-family:'Trade Gothic LT W01 Roman';
+}
+ul, li{margin:0; padding:0; list-style:none;}
+
+.dashes {/*The dash horizontal rule that is utilized in the top of menus and in different places ont he site*/
+	border-top: 1px dashed #000000;
+	margin: 0px;
+	margin-top: 0px;
+}
+
+a:link {
+	text-decoration: none;
+    color:limegreen!important;
+}
+a:visited {
+	text-decoration: none;
+    color:limegreen!important;
+}
+
+div#wrapper{
+  top: 5px;
+  left:5px;
+  right:5px;
+  bottom:5px;
+}
+
+
+
+/*The following are text stylings*/
+.title{
+  font-size: 1.8em;
+}
+
+.subtext{
+  font-size: 0.8em;
+
+}
+.flavorText{
+  font-size: 0.8em;
+
+}
+
+/*The following are color choices. They are changed with palette functioning*/
+.PrimaryColor{
+  color: #884468;
+}
+.SecondaryColor{
+  color: #A77B53;
+}
+.DetailColor{
+  color: #286830;
+}
+.BackgroundColor{
+  color:#05360B;
+}
