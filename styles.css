@@ -8,6 +8,11 @@ img {
 }
 body,td,th {
 	font-family:'Trade Gothic LT W01 Roman';
+    font-family: sans-serif;
+}
+p {
+    margin-bottom: 5px;
+    margin-top:0px;
 }
 ul, li{margin:0; padding:0; list-style:none;}
 
@@ -27,17 +32,58 @@ a:visited {
 }
 
 div#wrapper{
-  top: 5px;
-  left:5px;
-  right:5px;
-  bottom:5px;
+    display: block;
+    position:fixed;
+    max-width: 900px;
+    top: 5px;
+    left:0;
+    margin-left:auto;
+    right:0;
+    margin-right:auto;
+    bottom:5px;
 }
 
+/*The following are HEADER stylings*/
+.header{
+    display:  block;
+    width:100%;
+    height: 100px;
+    margin-bottom: 45px;
+}
+.headerLeft{
+    display: inline-block;
+    float: left;
+    height: 100px;
+}
+.headerLeft img{
+    max-height: 100px;
+}
+.headerRight{
+    display: inline-block;
+    float:left;
+    height:100px;
+    margin-left: 20px;
+}
 
+/*The following are MENU stylings*/
+.item{
+    height:auto;
+    margin-left:120px;
+    margin-top:auto;
+    margin-right: 15px;
+    margin-bottom:10px;
+}
+.menu{
+    border-bottom:1px solid;
+}
 
 /*The following are text stylings*/
+h1{
+    margin: 0px;
+}
 .title{
-  font-size: 1.8em;
+    font-size: 3.4em;
+    font-weight: 700;
 }
 
 .subtext{
@@ -55,10 +101,16 @@ div#wrapper{
 }
 .SecondaryColor{
   color: #A77B53;
+    border-color: #A77B53;
 }
 .DetailColor{
-  color: #286830;
+  color: #666;
+    border-color:#666;
 }
 .BackgroundColor{
-  color:#05360B;
+  background-color: #333 !important;
 }
+.BaseColor{
+    color:#222;
+}
+
