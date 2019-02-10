@@ -75,8 +75,11 @@ div#wrapper{
 }
 .menu{
     border-bottom:1px solid;
+    cursor: pointer;
 }
-
+.content{
+    display: none;
+}
 /*The following are text stylings*/
 h1{
     margin: 0px;
@@ -104,7 +107,7 @@ h1{
     border-color: #A77B53;
 }
 .DetailColor{
-  color: #666;
+  color: #999;
     border-color:#666;
 }
 .BackgroundColor{
