@@ -1,6 +1,5 @@
-//This following code perfoems functions that are called when a menu item is clicked. In short, it reads values from the div that store the menu item clicked to toggle a corresponding container as well as store a string that will be appended to the end of the tab url. This is important because it both trackes where you're at in the page visually (by changing the url) as well as being the way you'd copy that state to share with others so that the url splitting and opening code can be ran.
-
 $( ".menu" ).click(function() {
+    //This following code perfoems functions that are called when a menu item is clicked. In short, it reads values from the div that store the menu item clicked to toggle a corresponding container as well as store a string that will be appended to the end of the tab url. This is important because it both trackes where you're at in the page visually (by changing the url) as well as being the way you'd copy that state to share with others so that the url splitting and opening code can be ran.
     var ext = $(this).attr('app');
     //var that houses the strong to be added to the url when a menu item is clicked ('intro', for example, or 'design')
     var tog = $(this).attr('sel');
@@ -9,7 +8,7 @@ $( ".menu" ).click(function() {
     //this var stores a valid #id for a content div. it's got 'c' added so it will only affect a content box as all content boxes ids start with a 'c'
     
     $('.content:not(' + exc + ')').slideUp();
-    //all the content containrs that are not matching the id of the menu item clicked will recieve a close command to ensure that only the menu item clicked will have its content shown or interacted with. This is here to prevent someone from opening and closing multiple categories at once.
+    //all the content containrs that are not matching the id of the menu item clicked will recieve a close command to ensure that only the menu item clicked will have its content interacted with. This is here to prevent someone from opening and closing multiple categories at once.
     $('#c' + tog ).slideToggle();
     //this toggles only the matching content box that corresponds to the menu item that was clicked. This way I don't have to read open/close states prior to animation. You only TOGGLE what you click. The rest have auto shut or stayed shut already.
     
@@ -37,23 +36,32 @@ $(document).ready(function(){
 
     
     if ( urlExt01.includes('#') ) {
-        var urlExt01 = urlExt01.substr( 0, urlExt01.indexOf("#") );
+        urlExt01 = urlExt01.substr( 0, urlExt01.indexOf("#") );
     }    //IF there's another #
-    var urlExt01 = ("#" + urlExt01); //add id tag to val
+    urlExt01 = ("." + urlExt01); //add id tag to val
     $( urlExt01 ).slideDown();
     //removes everything after the # then stores in variable 1
     
     if ( urlExt02.includes('#') ) {
-        var urlExt02 = urlExt02.substr( 0, urlExt02.indexOf("#") );
+        urlExt02 = urlExt02.substr( 0, urlExt02.indexOf("#") );
     }    //IF there's another #
-    var urlExt02 = ("#" + urlExt02); //add id tag to val
-    
+    urlExt02 = ("." + urlExt02); //add id tag to val    
+    $( urlExt02 ).slideDown();
     //removes everything after the # then stores in variable 2
     
     if ( urlExt03.includes('#') ) {
-        var urlExt03 = urlExt03.substr( 0, urlExt03.indexOf("#") );
+        urlExt03 = urlExt03.substr( 0, urlExt03.indexOf("#") );
     }    //IF there's another #
-    var urlExt03 = ("#" + urlExt03); //add id tag to val
-    
+    urlExt03 = ("." + urlExt03); //add id tag to val    
+    $( urlExt03 ).slideDown();
     //removes everything after the # then stores in variable 3
+    
+    
 });
+
+var rdmImg = (function() {
+    var images = ["bg_01.jpg","bg_02.jpg","bg_03.jpg"];
+    return images[Math.floor(Math.random() * images.length)];
+})(); //this returns a random selection from the above array and replaces the bg image
+$('#bgWrapper').css("background-image", "url('/images/background/" + rdmImg + "')" );
+//this then changes the image out by editing the css values, using the random image value as a return that selects the img to be loaded. Since this is simply editing the value, the image will not reload if the random image is the same as the default image to load.
