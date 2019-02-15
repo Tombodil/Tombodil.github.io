@@ -21,6 +21,9 @@ ul, li{margin:0; padding:0; list-style:none;}
 	margin: 0px;
 	margin-top: 0px;
 }
+.hide {
+    display: none;
+}
 
 a:link {
 	text-decoration: none;
@@ -119,6 +122,12 @@ div#bgWrapper{
     display: none;
     padding-right: 100px;
     padding-bottom: 30px;
+}
+
+.more{ /*styles the more button*/
+    display: block;
+    margin-top: 5px;
+    cursor: pointer;
 }
 /*The following are text stylings*/
 h1{
