@@ -1,3 +1,27 @@
+$("#optIcon").click(function(){
+    //this icon interaction allows the options panel to be opened and closed.   
+    $("#optMenu").fadeToggle();
+});
+
+$(".palette").click(function(){
+    //This swaps the color palette in the site. Colors are given by a class so that they can be changed throughout the entire document without having to do extensive checks by jquery to every div's color settings. 
+    var primary =$(this).attr('pri');
+    var secondary =$(this).attr('sec');
+    var detail =$(this).attr('det');
+    var background =$(this).attr('bak');
+    var base =$(this).attr('bas');
+    var link =$(this).attr('lnk');
+    //alert("palette clicked");
+    $(".PrimaryColor").css("color" , primary);
+    $(".SecondaryColor").css("color" , secondary);
+    $(".SecondaryColor").css("border-color" , secondary);
+    $(".DetailColor").css("color" , detail);
+    $(".DetailColor").css("border-color" , detail);
+    $(".BackgroundColor").css("background-color" , background);
+    $(".BaseColor").css("color" , base);
+    $(".LinkColor").css("color" , link);
+});
+
 $( ".menu" ).click(function() {
     //This following code perfoems functions that are called when a menu item is clicked. In short, it reads values from the div that store the menu item clicked to toggle a corresponding container as well as store a string that will be appended to the end of the tab url. This is important because it both trackes where you're at in the page visually (by changing the url) as well as being the way you'd copy that state to share with others so that the url splitting and opening code can be ran.
     var ext = $(this).attr('app');
@@ -30,7 +54,37 @@ $( ".menu" ).click(function() {
     
 });
 
-   
+$( ".subMenu" ).click(function() {
+    
+    var sext = $(this).attr('app');
+
+    var stog = $(this).attr('sel');
+    
+    var sexc = ("#sc" + stog +"");
+    
+    $('.subContent:not(' + sexc + ')').slideUp();
+    
+    $( sexc ).slideToggle();
+    
+    $(".hide").slideUp();
+    $(".more").slideDown(); 
+    var current_location = window.location.href; 
+    var subrl = current_location.substr(current_location.indexOf("#") +1);
+    
+    var newrl = current_location.substr(0,current_location.indexOf("#"));
+    alert("subrl =" + subrl);
+    subrl = "#" + subrl.substr(0,subrl.indexOf("#"));
+    
+    
+    newrl = newrl + subrl +"#"+ sext;
+    alert("newrl =" + newrl);
+    history.pushState({
+                id: sext
+                }, sext, newrl );
+    
+    //The above is similar to the main menu url handling although it also substrongs the url another layer so that it's guarenteed to store the menu category, then change the subMenu category. This way everyhing is built together and applied to the url. This accounts for any url changes or page state changes and is not dependant on a specific order of interactions within the site. Inputing a new history entry into the url system will function like a normal page site without reloading, unlike overwriting url location.
+}); 
+
 
 $( ".more" ).click(function() {
     $(this).closest("p").next("p").slideDown();
@@ -93,3 +147,4 @@ function bgSwap() {
     $('#bgWrapper').css("background-image", "url('/images/background/" + rdmImg + "')" );
 //this then changes the image out by editing the css values, using the random image value as a return that selects the img to be loaded. Since this is simply editing the value, the image will not reload if the random image is the same as the default image to load.
 }
+

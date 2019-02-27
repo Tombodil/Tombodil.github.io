@@ -1,7 +1,20 @@
 html, body {/*Utilized to stop a bug with older browsers, with this, text alignment will need to be set in non CSS text*/
-  margin:0;
-  padding:0;
-  overflow-y:auto;
+    margin:0;
+    padding:0;
+    overflow-y:auto;
+    -webkit-transition: background-color 2s ease-out;
+    -moz-transition: background-color 2s ease-out;
+    -o-transition: background-color 2s ease-out;
+    transition: background-color 2s ease-out;
+    -webkit-transition: 2s ease-out;
+    -moz-transition: 2s ease-out;
+    -o-transition: 2s ease-out;
+    transition: 2s ease-out;
+    -webkit-transition: border-color 2s ease-out;
+    -moz-transition: border-color 2s ease-out;
+    -o-transition: border-color 2s ease-out;
+    transition: border-color 2s ease-out;
+    
 }
 img {
       border: 0;
@@ -84,6 +97,36 @@ div#bgWrapper{
     bottom:0;
 }
 
+#optIcon{
+    display: block;
+    position:relative;
+    top: 12px;
+    right:20px;
+    float: right;
+    text-align: right;
+    width: 20px;
+    height: 22px;
+    z-index: 100;
+    line-height: 0;
+    cursor: pointer;
+    color: gray;
+}
+
+#optMenu{
+    display: none;
+    position:absolute;
+    max-width: 600px;
+    top: 100px;
+    left:0;
+    margin-left:auto;
+    right:0;
+    margin-right:auto;
+    min-height: 200px;
+    background-color: #232323;
+    border: 1px darkgrey;
+    padding:20px;
+    
+}
 /*The following are HEADER stylings*/
 .header{
     display:  block;
@@ -95,6 +138,7 @@ div#bgWrapper{
     display: inline-block;
     float: left;
     height: 100px;
+    width:100px;
 }
 .headerLeft img{
     max-height: 100px;
@@ -104,6 +148,7 @@ div#bgWrapper{
     float:left;
     height:100px;
     margin-left: 20px;
+    width: calc( 100% - 120px );
 }
 
 /*The following are MENU stylings*/
@@ -118,12 +163,22 @@ div#bgWrapper{
     border-bottom:1px solid;
     cursor: pointer;
 }
+.subMenu{
+    border-bottom:1px solid;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
 .content{
     display: none;
-    padding-right: 100px;
+    padding-right: 0px;
     padding-bottom: 30px;
 }
-
+.subContent{
+    display: none;
+    padding-left: 20px;
+    padding-bottom: 30px;
+}
 .more{ /*styles the more button*/
     display: block;
     margin-top: 5px;
@@ -137,7 +192,10 @@ h1{
     font-size: 3.4em;
     font-weight: 700;
 }
-
+.subTitle{
+    margin-top: 0;
+    margin-bottom: 20px;
+}
 .subtext{
   font-size: 0.8em;
 
@@ -159,8 +217,12 @@ h1{
 }
 
 /*The following are color choices. They are changed with palette functioning*/
+.palette{
+    cursor: pointer;
+}
 .PrimaryColor{
-  color: #884468;
+    color: yellowgreen;
+  
 }
 .SecondaryColor{
   color: #A77B53;
@@ -176,4 +238,20 @@ h1{
 .BaseColor{
     color:#222;
 }
-
+.LinkColor{
+    color: #884468;
+}
+.third{
+    display: inline-block;
+    width: 50px;
+    
+}
+.grey{
+    color:grey;
+}
+.orange{
+    color:orange;
+}
+.purple{
+    color:purple;
+}
