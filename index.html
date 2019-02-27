@@ -7,6 +7,8 @@
     
     
     <link rel="stylesheet" href="styles.css"><!--Loads javascript functions-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"><!--Loads material design icons by google material design team-->
     <title>TomLeef Portfolio</title>
 </head>
 <body>
@@ -15,6 +17,12 @@
     </div>
   <div id="wrapper" class="BackgroundColor">
       
+    <div id="optMenu">
+        <h2 class="subTitle PrimaryColor">Palette</h2>
+        <div class="third"><i class="material-icons palette orange" pri="orange" sec="yellow" det="white" bak="#222" bas="grey" lnk="white">palette</i></div>
+        <div class="third"><i class="material-icons palette grey" pri="" sec="" det="" bak="" bas="" lnk="">palette</i></div>
+        <div class="third"><i class="material-icons palette purple" pri="" sec="" det="" bak="" bas="" lnk="">palette</i></div>
+    </div>
       
     <div class="header"  >
         
@@ -23,6 +31,7 @@
         </div>  <!--END headerLeft-->
         
         <div class="headerRight"  >
+            <div><i  id="optIcon" class="material-icons opener">menu</i></div>
             <h1 class="title PrimaryColor">Thomas Leef</h1>
             <p class="subtitle SecondaryColor">Passionate, Talented Front End Web Designer</p>
             <p class="flavorText DetailColor">Git Hosted. Agile Educated. Adaptable.</p>
@@ -38,10 +47,10 @@
         
         <div class="content item DetailColor Intro" id="c01">
             <p>It takes a design mindset to translate the soul of a project into code. It takes a business mindset to understand how development is dependant on communication and feedback-driven iteration.<br>
-            <span class="more PrimaryColor" sel="01">more</span>
+            <span class="more LinkColor" sel="01">more</span>
             </p>            
             <p class="hide" id="p01">I dont believe these two mindsets are mutually exclisive. Design is more then a visual discipline. Buisiness sense shouldn't be a four letter word to developers. Both are best informed by guiding principles and values rather then focus on procudyres and systems. Each person has talents, knowledge and perspectives that add to the collective effort. Leverging the people involved is the greatest asset to any project- procedures change and systems evolve. Day by day, its the people who make these endeavors possible.<br>
-            <span class="more PrimaryColor" sel="02">more</span>
+            <span class="more LinkColor" sel="02">more</span>
             </p>
             <p class="hide" id="p02">How do I fit into all this high-minded exposition? I have developed skills and knowledge across the spectrum of design and development while retaining a sense of the greater picture I'm a part of. I worked with designers to translate their work into live code that I've then iterated and developed with the network engineers while comminicating the whole process with project management and ownership. I'm the developer equivalent of a mutli-cable, able to adapt any given input into a differently formatted output.</p>
         </div><!--END contentItem-->        
@@ -58,29 +67,39 @@
             Develop. Integrate. Expand.
         </div><!--END menuItem-->
         <div class="content item DetailColor Develop" id="c03">
-            <div class="subMenu">Truckersmall.com</div>
-            <div class="subContent">
-                <p>Online Trucking source and drop sale site. Original site development and initial wordpress environment configured by Vouelger Group Inc. Additional layout, menu, text and UI work completed by me over three months. Created multiple sub pages with their page builder and utilized php and html code in order to add and modify functionality of the carts, shipping calculations and other details that were best kept as second layer (DOM) dynamics rather then CMS handled statics. Blog posts were mine as well. Pages and blog posts were optimized for SEO which was tracked with online tools and driven by regional serch statistics and industry leading goods, services and purchases. Worked with remote marketing team to facilitate digital ecology including facebook, twitter and instagram feed with syndicated content to company specifications. </p>
+            <div class="subMenu PrimaryColor" id="sm11" sel="11" app="Truckersmall">Truckersmall.com</div>
+            <div class="subContent Truckersmall" id="sc11">
+                <p>Online Trucking source and drop sale site in Central Il. Family owned business with 20 years experience. Modified and expanded existing site base as well as content.<br>
+                <span class="more LinkColor" >more</span></p>
+                <p class="hide">Original site development and initial wordpress environment configured by Vouelger Group Inc. Additional layout, menu, text and UI work completed by me over three months. Created multiple sub pages with their page builder and utilized php and html code in order to add and modify functionality of the carts, shipping calculations and other details that were best kept as second layer (DOM) dynamics rather then CMS handled statics. Blog posts were mine as well. Pages and blog posts were optimized for SEO which was tracked with online tools and driven by regional serch statistics and industry leading goods, services and purchases. Worked with remote marketing team to facilitate digital ecology including facebook, twitter and instagram feed with syndicated content to company specifications. </p>
             </div>
             
-            <div class="subMenu">IBM Design Principal Application</div>
-            <div class="subContent">
-                <p>Created a digital application for IBM client working to promote themselves within IBM heirarchy. Done when the standard was still paper copies as backup for a PDF.</p>
+            <div class="subMenu PrimaryColor" id="sm12" sel="12" app="IBMDP">IBM Design Principal Application</div>
+            <div class="subContent IBMDP" id="sc12">
+                <p>Created a digital application for IBM client working to promote themselves within IBM heirarchy. Done when the standard was still paper materials as backup for a PDF application.<br>
+                <span class="more LinkColor" >more</span></p>
+                <p class="hide">Client approached me over application format: standard expectations at the time was a 'smart' pdf with backup paper materials provided. This traditional application process required the HR and MGMT group to keep track of multiple formats per each applicant. Materials were cross checked in case of PDF issues and each applicant took a significant time investment to review. We developed a digital application in web form that utilized IBM visual language; hosted on their secure web infrastructure (bluemix/git). The application was praised for its tech integration as well as the overwhelming simplicity compared to most pdf/paper applications. There was no need to carry around physical materials or keep a local copy of the application downloaded- the reviewers were given a log in and were then able to access the application from anywhere on any machine. The application process was such a stark contrast to the norm that future applications were requested in web accessible format.</p>
             </div>
             
-            <div class="subMenu">TropeCollaborative.com</div>                
-            <div class="subContent">
-                <p>Third generation personal representation of client group. Site base changed to WIX as expeditionary test of database and data handling integrated CMS. Some tricks and layout hacks inplemented to counter some of the more limited layout and formatting options available at start. Results obtained in spite of lack of CSS editing.</p>
+            <div class="subMenu PrimaryColor" id="sm13" sel="13" app="Trope">TropeCollaborative.com</div>                
+            <div class="subContent Trope" id="sc13">
+                <p>Third generation personal representation of client group. Site base changed to WIX as expeditionary test of database and data handling integrated CMS. Some tricks and layout hacks inplemented to counter some of the more limited layout and formatting options available at start. Results obtained in spite of lack of CSS editing.<br>
+                <span class="more LinkColor" >more</span></p>
+                <p class="hide">secondary paragraph</p>
             </div>
             
-            <div class="subMenu">25Years</div>                
-            <div class="subContent">
-                <p>Anniversary site with a memorial note for one for one of the client's parents. Jquery enabled HTML with multi-selector CSS states that simplify the Jquery/Javascript load. All interaction state visual changes done with CSS classes while animation and data states accomplished with JQuery.</p>
+            <div class="subMenu PrimaryColor" id="sm14" sel="14" app="25Years">25Years</div>                
+            <div class="subContent 25Years" id="sc14">
+                <p>Anniversary site with a memorial note for one for one of the client's parents. Jquery enabled HTML with multi-selector CSS states that simplify the Jquery/Javascript load. All interaction state visual changes done with CSS classes while animation and data states accomplished with JQuery.<br>
+                <span class="more LinkColor" >more</span></p>
+                <p class="hide">secondary paragraph</p>
             </div>
             
-            <div class="subMenu">Kallish Holiday Site (yearly)</div>
-            <div class="subContent">
-                <p>Yearly holiday site for Clients' family. Images and layout iterated each year. Grid layout with adjustment and detail views. Detail view tagged with format so that different aspect ratios are aligned to different grid layouts. Features built on top of core Masonry plugin layout.</p>
+            <div class="subMenu PrimaryColor" id="sm15" sel="15" app="KallishHoliday">Kallish Holiday Site (yearly)</div>
+            <div class="subContent KallishHoliday" id="sc15">
+                <p>Yearly holiday site for Clients' family. Images and layout iterated each year. Grid layout with adjustment and detail views. Detail view tagged with format so that different aspect ratios are aligned to different grid layouts. Features built on top of core Masonry plugin layout.<br>
+                <span class="more LinkColor" >more</span></p>
+                <p class="hide">secondary paragraph</p>
             </div>
         </div><!--END contentItem-->
         
