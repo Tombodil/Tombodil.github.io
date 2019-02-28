@@ -14,7 +14,9 @@ html, body {/*Utilized to stop a bug with older browsers, with this, text alignm
     -moz-transition: border-color 2s ease-out;
     -o-transition: border-color 2s ease-out;
     transition: border-color 2s ease-out;
-    
+    font-family: reross-rectangular, sans-serif;
+    font-style: normal;
+    font-weight: 400;
 }
 img {
       border: 0;
@@ -40,11 +42,11 @@ ul, li{margin:0; padding:0; list-style:none;}
 
 a:link {
 	text-decoration: none;
-    color:limegreen!important;
+    
 }
 a:visited {
 	text-decoration: none;
-    color:limegreen!important;
+    
 }
 
 div#wrapper{
@@ -221,26 +223,27 @@ h1{
     cursor: pointer;
 }
 .PrimaryColor{
-    color: yellowgreen;
+    color: #C0B283;
   
 }
 .SecondaryColor{
-  color: #A77B53;
-    border-color: #A77B53;
+  color: #676747;
+    border-color: #C0B283;
 }
 .DetailColor{
-  color: #999;
+  color: #888;
     border-color:#666;
 }
 .BackgroundColor{
-  background-color: #333 !important;
+  background-color: #F2F2F2 !important;
 }
 .BaseColor{
-    color:#222;
+    color:#888;
 }
 .LinkColor{
-    color: #884468;
+    color: goldenrod;
 }
+
 .third{
     display: inline-block;
     width: 50px;

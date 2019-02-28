@@ -69,19 +69,20 @@ $( ".subMenu" ).click(function() {
     $(".hide").slideUp();
     $(".more").slideDown(); 
     var current_location = window.location.href; 
-    var subrl = current_location.substr(current_location.indexOf("#") +1);
     
-    var newrl = current_location.substr(0,current_location.indexOf("#"));
-    alert("subrl =" + subrl);
-    subrl = "#" + subrl.substr(0,subrl.indexOf("#"));
+    var mainUrl = current_location.split("#")[0];
+    //all good here so far
+    var subUrl = current_location.substr(current_location.indexOf("#"));
+    
+    trimUrl = subUrl.split("-")[0];
+    
+    var newUrl = mainUrl + trimUrl + "-" + sext ;
     
     
-    newrl = newrl + subrl +"#"+ sext;
-    alert("newrl =" + newrl);
     history.pushState({
                 id: sext
-                }, sext, newrl );
-    
+                }, sext, newUrl );
+    setTimeout(subUrlReset , 1000);//this calls the reset function which checks if any menu items have been activated or deactivated and then adjusts the url entry accordingly
     //The above is similar to the main menu url handling although it also substrongs the url another layer so that it's guarenteed to store the menu category, then change the subMenu category. This way everyhing is built together and applied to the url. This accounts for any url changes or page state changes and is not dependant on a specific order of interactions within the site. Inputing a new history entry into the url system will function like a normal page site without reloading, unlike overwriting url location.
 }); 
 
@@ -95,9 +96,9 @@ $( ".more" ).click(function() {
 $(document).ready(function(){
     bgSwap();
     var urlInput = window.location.href; //creates a variable and copies url into it
-    var urlExt01 = urlInput.substr( urlInput.indexOf("#") + 1);
+    /*var urlExt01 = urlInput.substr( urlInput.indexOf("#") + 1);
     //this takes the urlInput string and removes everything before and including the # 
-    var urlExt02 = urlExt01.substr( urlExt01.indexOf("#") + 1 );
+    var urlExt02 = urlExt01.substr( urlExt01.indexOf("-") + 1 );
     //this removes another layer of any values after a # character
     var urlExt03 = urlExt02.substr( urlExt02.indexOf("#") + 1 );
     //this removes another layer of any values after a # character
@@ -111,7 +112,7 @@ $(document).ready(function(){
     //removes everything after the # then stores in variable 1
     
     if ( urlExt02.includes('#') ) {
-        urlExt02 = urlExt02.substr( 0, urlExt02.indexOf("#") );
+        urlExt02 = urlExt02.substr( 0, urlExt02.indexOf("-") );
     }    //IF there's another #
     urlExt02 = ("." + urlExt02); //add id tag to val    
     $( urlExt02 ).slideDown();
@@ -122,7 +123,7 @@ $(document).ready(function(){
     }    //IF there's another #
     urlExt03 = ("." + urlExt03); //add id tag to val    
     $( urlExt03 ).slideDown();
-    //removes everything after the # then stores in variable 3
+    //removes everything after the # then stores in variable 3*/
     
     
 });
@@ -130,9 +131,21 @@ $(document).ready(function(){
  function urlReset() {
         //this function fires 1 sec after a menu item is clicked and a .content item is toggled. If a .content item is open (visible), nothing happens. If all .content items are closed (hidden), then the url is cleaned of any hash tags and then updated to the main url.
         if ( ! $('.content').is(':visible') )  {
-            var urlReset = window.location.href.substr(0, window.location.href.indexOf("#") );
+            var urlReset = window.location.href.split("#")[0];
             //alert("no content divs visible, urlReset = " + urlReset);
             //window.location.href = urlReset;
+            history.pushState({
+                id: 'home'
+                }, 'Home', urlReset );
+            }
+}
+
+ function subUrlReset() {
+        //this function fires 1 sec after a menu item is clicked and a .content item is toggled. If a .content item is open (visible), nothing happens. If all .content items are closed (hidden), then the url is cleaned of any hash tags and then updated to the main url.
+     //alert("subUrlReset Activated");
+        if ( ! $('.subContent').is(':visible') )  {
+            var urlReset = window.location.href.split("-")[0];
+            
             history.pushState({
                 id: 'home'
                 }, 'Home', urlReset );
