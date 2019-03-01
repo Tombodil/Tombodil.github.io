@@ -22,6 +22,10 @@ $(".palette").click(function(){
     $(".LinkColor").css("color" , link);
 });
 
+$(".material-icons").hover(function(){
+    $(this).toggleClass("LinkColor");
+});
+
 $( ".menu" ).click(function() {
     //This following code perfoems functions that are called when a menu item is clicked. In short, it reads values from the div that store the menu item clicked to toggle a corresponding container as well as store a string that will be appended to the end of the tab url. This is important because it both trackes where you're at in the page visually (by changing the url) as well as being the way you'd copy that state to share with others so that the url splitting and opening code can be ran.
     var ext = $(this).attr('app');
