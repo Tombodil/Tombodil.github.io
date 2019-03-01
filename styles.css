@@ -100,18 +100,19 @@ div#bgWrapper{
 }
 
 #optIcon{
-    display: block;
-    position:relative;
-    top: 12px;
+    display: inline-block;
+    border-right:2px solid;
+    padding-right: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    min-height: 50px;
+    min-width: 48px;
+    text-align: center;
+    vertical-align: middle;
+    position:absolute;
+    top: 20px;
     right:20px;
     float: right;
-    text-align: right;
-    width: 20px;
-    height: 22px;
-    z-index: 100;
-    line-height: 0;
-    cursor: pointer;
-    color: gray;
 }
 
 #optMenu{
@@ -161,9 +162,27 @@ div#bgWrapper{
     margin-right: 20px;
     margin-bottom:10px;
 }
+.leftMenu{
+    display: block;
+    position: relative;
+    float: left;
+    left: 25px;
+    max-width: 50px;
+    
+}
+.material-icons{
+    font-size: 48px !important;
+}
 .menu{
-    border-bottom:1px solid;
+    display: inline-block;
+    border-right:2px solid;
+    padding-right: 5px;
     cursor: pointer;
+    margin-bottom: 20px;
+    min-height: 50px;
+    min-width: 48px;
+    text-align: center;
+    vertical-align: middle;
 }
 .subMenu{
     border-bottom:1px solid;
