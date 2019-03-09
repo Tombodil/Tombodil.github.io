@@ -14,21 +14,33 @@ html, body {/*Utilized to stop a bug with older browsers, with this, text alignm
     -moz-transition: border-color 2s ease-out;
     -o-transition: border-color 2s ease-out;
     transition: border-color 2s ease-out;
-    font-family: reross-rectangular, sans-serif;
-    font-style: normal;
-    font-weight: 400;
+    font-family:'Garamond MT W00 Regular';
+    
+}
+.FG{
+    font-family:'FranklinGothicW01-Roman';
+}
+.FGC{
+    font-family:'FranklinGothicW01-Conde1119830';
+}
+.GB{
+    font-family:'Garamond MT W00 Bold';
+}
+.GBI{
+    font-family:'Garamond MT W00 Bold Italic';
 }
 img {
       border: 0;
 }
 body,td,th {
-	font-family: reross-quadratic, sans-serif;
-    font-weight: 400;
+	font-family:'Garamond MT W00 Regular';
+    font-weight: 200;
     font-style: normal;
 }
 p {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     margin-top:0px;
+    line-height: 1.5;
 }
 ul, li{margin:0; padding:0; list-style:none;}
 
@@ -60,6 +72,11 @@ div#wrapper{
     right:0;
     margin-right:auto;
     bottom:5px;
+    border-radius: 20px;
+    border-top-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    overflow: hidden;
+    padding: 20px
 }
 
 div#bgWrapper{
@@ -139,26 +156,41 @@ div#bgWrapper{
     margin-bottom: 45px;
 }
 .headerLeft{
-    display: inline-block;
+    display: block;
     float: left;
-    height: 100px;
-    width:100px;
+    position: relative;
+    left:-20px;
+    top:-20px;
+    height: 110px;
+    width:110px;
+    border-radius: 50px;
+    z-index: 50000000;
+    text-align: center;
 }
 .headerLeft img{
-    max-height: 100px;
+    display:block;
+    position: absolute;
+    max-height: 85px;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin: auto;
+    border: 1px solid;
+    border-radius:50%;
 }
 .headerRight{
     display: inline-block;
     float:left;
     height:100px;
-    margin-left: 20px;
-    width: calc( 100% - 120px );
+    margin-left: 0px;
+    width: calc( 100% - 130px );
 }
 
 /*The following are MENU stylings*/
 .item{
     height:auto;
-    margin-left:120px;
+    margin-left:20px;
     margin-top:auto;
     margin-right: 20px;
     margin-bottom:10px;
@@ -169,6 +201,8 @@ div#bgWrapper{
     float: left;
     left: 25px;
     max-width: 50px;
+    top:-30px;
+    
     
 }
 .material-icons{
@@ -188,8 +222,16 @@ div#bgWrapper{
 .subMenu{
     border-bottom:1px solid;
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 0px;
     margin-bottom: 10px;
+}
+.main{
+    position: absolute;
+    top: 130px;
+    left:120px;
+    right:0px;
+    bottom: 0px;
+    
 }
 .content{
     display: none;
@@ -198,8 +240,8 @@ div#bgWrapper{
 }
 .subContent{
     display: none;
-    padding-left: 20px;
-    padding-bottom: 30px;
+    padding-left: 0px;
+    padding-bottom: 10px;
 }
 .more{ /*styles the more button*/
     display: block;
@@ -208,11 +250,25 @@ div#bgWrapper{
 }
 /*The following are text stylings*/
 h1{
-    margin: 0px;
+    overflow: hidden;
+    display: block;
+    padding: none;
+    position: relative;
+    top: 0;
+    margin-top: 0px;
+    margin-bottom: 5px;
 }
 .title{
-    font-size: 3.4em;
-    font-weight: 700;
+    position: relative;
+    font-size: 54px;
+    font-weight: 200;
+    margin-top:-13px;
+    padding-bottom:0px;
+    margin-bottom: -8px;
+    left:-15px;
+}
+h3{
+    margin-bottom:0px;
 }
 .subTitle{
     margin-top: 0;
@@ -231,11 +287,11 @@ h1{
     position: absolute;
     bottom: 0px;
     width:100%;
-    font-size: 0.8em;
+    font-size: 0.7em;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 /*The following are color choices. They are changed with palette functioning*/
