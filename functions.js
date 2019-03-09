@@ -1,6 +1,7 @@
 $("#optIcon").click(function(){
     //this icon interaction allows the options panel to be opened and closed.   
     $("#optMenu").fadeToggle();
+    //$("#optIcon").toggleClass("LinkColor");
 });
 
 $(".palette").click(function(){
