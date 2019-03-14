@@ -164,7 +164,7 @@ $(document).ready(function(){
 
 function bgSwap() {
     var rdmImg = (function() {
-    var images = ["bg_01.jpg","bg_02.jpg","bg_03.jpg"];
+    var images = ["bg_01.png","bg_02.png","bg_03.png"];
     return images[Math.floor(Math.random() * images.length)];
     })(); //this returns a random selection from the above array and replaces the bg image
     $('#bgWrapper').css("background-image", "url('/images/background/" + rdmImg + "')" );
