@@ -3,9 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-    <script type="text/javascript" src="//fast.fonts.net/jsapi/b6f2b2b5-c7cc-447a-b07a-d8da4b59b6a2.js"></script>
-    <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/b6f2b2b5-c7cc-447a-b07a-d8da4b59b6a2.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/b6f2b2b5-c7cc-447a-b07a-d8da4b59b6a2.css"/>
     <link rel="stylesheet" href="styles.css"><!--Loads javascript functions-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"><!--Loads material design icons by google material design team-->
@@ -15,16 +15,16 @@
     <div id="bgWrapper"></div>
   <div id="wrapper" class="BackgroundColor">
       
-    <div id="optMenu">
-        <h2 class="subTitle PrimaryColor">Palette</h2>
+    <div id="optMenu" class="SecondaryColor">
+        <h1 class="subTitle PrimaryColor FGC">Palette</h1>
         <div class="third">
-            <i class="material-icons palette orange" pri="orange" sec="yellow" det="white" bak="#222" bas="grey" lnk="white">palette</i>
+            <i class="material-icons palette orange" pri="orange" sec="yellow" det="white" bgc="#222222" bas="grey" lnk="white">palette</i>
         </div>
         <div class="third">
-            <i class="material-icons palette grey" pri="" sec="" det="" bak="" bas="" lnk="">palette</i>
+            <i class="material-icons palette grey" pri="" sec="" det="" bgc="" bas="" lnk="">palette</i>
         </div>
         <div class="third">
-            <i class="material-icons palette purple" pri="#A239CA" sec="#4717F6" det="#E7DFDD" bak="#0E0816" bas="" lnk="">palette</i>
+            <i class="material-icons palette purple" pri="#A239CA" sec="#4717F6" det="#E7DFDD" bgc="#0E0816" bas="" lnk="">palette</i>
         </div>
     </div>
       
@@ -35,10 +35,14 @@
         </div>  <!--END headerLeft-->
         
         <div class="headerRight"  >
-            <div><i  id="optIcon" class="material-icons opener SecondaryColor">menu</i></div>
+            <div class="optIcon SecondaryColor">
+                <i class="material-icons">
+                    menu
+                </i>
+            </div>
             
-            <h1 class="title PrimaryColor FG">Thomas Leef</h1>
-            <div class="subtitle SecondaryColor GB">Talented Agile Front End Web Developer</div>S/
+            <h1 class="title PrimaryColor FGC">Thomas Leef</h1>
+            <div class="subTitle SecondaryColor FG">Talented  Front End Web Developer</div>
             <div class="flavorText DetailColor">Git Hosted. Agile Educated. Adaptable.</div>
         </div>  <!--END headerRight-->
         
@@ -52,7 +56,7 @@
             </i>
         </div><!--END menuItem-->
         
-        <div class="menu SecondaryColor" id="m02" sel="02" app="Design">
+        <!--<div class="menu SecondaryColor" id="m02" sel="02" app="Design">
             <i class="material-icons">
                 collections
             </i>
@@ -81,14 +85,14 @@
     <div class="main">
         
         <div class="content item DetailColor Intro" id="c01">
-            <h1 class="SecondaryColor GB">Intent</h1>
-            <p>It takes a design mindset to translate the soul of a project into code. It takes a business mindset to understand how development is dependant on communication and feedback-driven iteration.<br>
+            <h1 class="SecondaryColor FGC">Intent</h1>
+            <p>It takes a design mindset to translate the concept of a project into code. A business mindset understands how development is dependent on communication and feedback-driven iteration.<br>
             <span class="more LinkColor" sel="01">more</span>
             </p>            
-            <p class="hide" id="p01">I dont believe these two mindsets are mutually exclisive. Design is more then a visual discipline. Buisiness sense shouldn't be a four letter word to developers. Both are best informed by guiding principles and values rather then focus on procudyres and systems. Each person has talents, knowledge and perspectives that add to the collective effort. Leverging the people involved is the greatest asset to any project- procedures change and systems evolve. Day by day, its the people who make these endeavors possible.<br>
+            <p class="hide" id="p01">These two mindsets compliment each other. Design is more then a visual discipline. Business sense is an integral part of development. Both are best informed by guiding principles and values rather then procedures and systems. Each person has talents, knowledge and perspectives that add to the collective effort. Leveraging this knowledge is the greatest asset to any project- procedures change and systems evolve. Day by day, its the people who make these endeavors possible.<br>
             <span class="more LinkColor" sel="02">more</span>
             </p>
-            <p class="hide" id="p02">How do I fit into all this high-minded exposition? I have developed skills and knowledge across the spectrum of design and development while retaining a sense of the greater picture I'm a part of. I worked with designers to translate their work into live code that I've then iterated and developed with the network engineers while comminicating the whole process with project management and ownership. I'm the developer equivalent of a mutli-cable, able to adapt any given input into a differently formatted output.</p>
+            <p class="hide" id="p02">I have developed skills and knowledge across the spectrum of design and development while retaining a sense of the greater picture I'm part of. I've worked with designers to translate their work into live code - then iterated and developed with the network engineers while communicating the entire process with project management and ownership. I'm excited by new challenges and always improve my skills within a profitable framework for myself and my employers.</p>
         </div><!--END contentItem-->        
         
         
@@ -100,65 +104,73 @@
         
         
         <div class="content item DetailColor Develop" id="c03">
-            <h1 class="SecondaryColor GB">Development</h1>
+            <h1 class="SecondaryColor FGC">Development</h1>
             <div class="subMenu PrimaryColor" id="sm11" sel="11" app="Truckersmall">Truckersmall.com</div>
             <div class="subContent Truckersmall" id="sc11">
-                <p>Online Trucking source and drop sale site in Central Il. Family owned business with 20 years experience. Modified and expanded existing site base as well as content.<br>
+                <p>Online Trucking source and drop sale site in Central Il. Family owned business with 20 years experience. Modified and expanded existing site base as well as content. <a href="https://truckersmall.com/" target="_blank" class="LinkColor rightLink"><i class="material-icons inlineLink">link</i>Site</a><br>
                 <span class="more LinkColor" >more</span></p>
-                <p class="hide">Original site development and initial wordpress environment configured by Vouelger Group Inc. Additional layout, menu, text and UI work completed by me over three months. Created multiple sub pages with their page builder and utilized php and html code in order to add and modify functionality of the carts, shipping calculations and other details that were best kept as second layer (DOM) dynamics rather then CMS handled statics. Blog posts were mine as well. Pages and blog posts were optimized for SEO which was tracked with online tools and driven by regional serch statistics and industry leading goods, services and purchases. Worked with remote marketing team to facilitate digital ecology including facebook, twitter and instagram feed with syndicated content to company specifications. </p>
+                <p class="hide">Original site development and initial Wordpress environment configured by outside dev group. Additional layout, menu, text and UI work completed by me over three months. Created multiple sub pages with their page builder and utilized PHP, CSS and HTML in order to add and modify functionality of the carts, shipping calculations and other details that were best kept as second layer (DOM) dynamics rather then CMS handled statics. Wrote the blog posts: optimized for SEO which was tracked with online tools and driven by regional search statistics and industry leading goods, services and purchases. Worked with remote marketing team to facilitate digital ecology including Facebook, Twitter and Instagram feed with syndicated content to company specifications. </p>
             </div>
             
             <div class="subMenu PrimaryColor" id="sm12" sel="12" app="IBMDP">IBM Design Principal Application</div>
             <div class="subContent IBMDP" id="sc12">
-                <p>Created a digital application for IBM client working to promote themselves within IBM heirarchy. Done when the standard was still paper materials as backup for a PDF application.<br>
+                <p>Created digital application for client working to promote themselves within IBM heirarchy. Done when the standard was still paper materials as backup for a PDF application. Login: ReviewApplication  PW: Rand29Noyes!5 <a href="http://www.tropesites.com/IBMDPKallish/Login.html" target="_blank" class="LinkColor rightLink"><i class="material-icons inlineLink">link</i>Site</a><br>
                 <span class="more LinkColor" >more</span></p>
-                <p class="hide">Client approached me over application format: standard expectations at the time was a 'smart' pdf with backup paper materials provided. This traditional application process required the HR and MGMT group to keep track of multiple formats per each applicant. Materials were cross checked in case of PDF issues and each applicant took a significant time investment to review. We developed a digital application in web form that utilized IBM visual language; hosted on their secure web infrastructure (bluemix/git). The application was praised for its tech integration as well as the overwhelming simplicity compared to most pdf/paper applications. There was no need to carry around physical materials or keep a local copy of the application downloaded- the reviewers were given a log in and were then able to access the application from anywhere on any machine. The application process was such a stark contrast to the norm that future applications were requested in web accessible format.</p>
+                <p class="hide">Client approached me over application format: standard expectation at the time was a 'smart' pdf with backup paper materials provided. This traditional application process required the HR and MGMT group to keep track of multiple formats per each applicant. Materials were cross checked in case of PDF issues. Each applicant took a significant time investment to review. We developed a digital application in web form that utilized IBM visual language; hosted on their secure web infrastructure (bluemix/git). The application was praised for its tech integration as well as the overwhelming simplicity compared to most pdf/paper applications. The application was such a stark contrast to the norm that future applications were requested in web accessible format.</p>
             </div>
             
             <div class="subMenu PrimaryColor" id="sm13" sel="13" app="Trope">TropeCollaborative.com</div>                
             <div class="subContent Trope" id="sc13">
-                <p>Third generation personal representation of client group. Site base changed to WIX as expeditionary test of database and data handling integrated CMS. Some tricks and layout hacks inplemented to counter some of the more limited layout and formatting options available at start. Results obtained in spite of lack of CSS editing.<br>
+                <p>Third generation representation of client group. Site base changed to WIX as expeditionary test of database and data handling integrated CMS. Some tricks and layout hacks inplemented to counter limited layout and formatting options. Results obtained in spite of lack of CSS editing. <a href="https://www.tropecollaborative.com/" target="_blank" class="LinkColor rightLink"><i class="material-icons inlineLink">link</i>Site</a><br>
                 <span class="more LinkColor" >more</span></p>
-                <p class="hide">secondary paragraph</p>
+                <p class="hide">The media heavy sections for the site were built using database objects rather then specifically build the links. Wix editing system excells at dynamic data but lacks any specialized CSS or layout tools. Left oriented layout mathmatics were utilized to keep pull quotes in their specified order without covering up actual content. Specially ordered placeholders were populated for the area the quotes are placed. According to WIX documentation, many of the results we produced were not possible.</p>
+            </div>
+            
+            
+            
+            <div class="subMenu PrimaryColor" id="sm15" sel="15" app="KallishHoliday">Kallish Holiday Site (yearly)</div>
+            <div class="subContent KallishHoliday" id="sc15">
+                <p>Yearly holiday site for Clients' family. Images and layout iterated each year. Grid layout with adjustment and detail views. Detail view tagged with format so that different aspect ratios are aligned to different grid layouts. Features built on top of core Masonry plugin layout. <a href="http://www.tropesites.com/Holidays_2018.html" target="_blank" class="LinkColor rightLink"><i class="material-icons inlineLink">link</i>Site</a><br>
+                <span class="more LinkColor" >more</span></p>
+                <p class="hide">Images are folder hosted. Each image div-group has attributes attached in order to process animations and layout changes without having to produce a more complex logic system. Simpler and faster returns meant less development cost. Layout pulls an attribute from the image hosting div to adjust Masonry layout. Masonry plugin customized to use a mathematically set grid, so that varying image aspect ratios are sill within grid alignment.</p>
             </div>
             
             <div class="subMenu PrimaryColor" id="sm14" sel="14" app="25Years">25Years</div>                
             <div class="subContent 25Years" id="sc14">
-                <p>Anniversary site with a memorial note for one for one of the client's parents. Jquery enabled HTML with multi-selector CSS states that simplify the Jquery/Javascript load. All interaction state visual changes done with CSS classes while animation and data states accomplished with JQuery.<br>
+                <p>Jquery enabled Anniversary Site: HTML with multi-selector CSS states that simplify the Jquery/Javascript load. All interaction state visual changes done with CSS classes while animation and data states accomplished with JQuery. <a href="http://www.tropesites.com/25years/anniversary.html" target="_blank" class="LinkColor rightLink"><i class="material-icons inlineLink">link</i>Site</a><br>
                 <span class="more LinkColor" >more</span></p>
-                <p class="hide">secondary paragraph</p>
+                <p class="hide">Fully developed deigital ecology with opt in music. Utilizes an attribute and advanced selector CSS  system to cut down on if/then and edge case coding. Only the needed interaction was built. Numerous outside API's included to further reduce development load.</p>
             </div>
             
-            <div class="subMenu PrimaryColor" id="sm15" sel="15" app="KallishHoliday">Kallish Holiday Site (yearly)</div>
-            <div class="subContent KallishHoliday" id="sc15">
-                <p>Yearly holiday site for Clients' family. Images and layout iterated each year. Grid layout with adjustment and detail views. Detail view tagged with format so that different aspect ratios are aligned to different grid layouts. Features built on top of core Masonry plugin layout.<br>
-                <span class="more LinkColor" >more</span></p>
-                <p class="hide">secondary paragraph</p>
-            </div>
         </div><!--END contentItem-->
         
         
         <div class="content item DetailColor Collaborate" id="c04">
-            <h1 class="SecondaryColor GB">IIT Chicago IDXID Grad Class</h1>
-            <h3>AGILE Tools Guest Lecturer / Support Aide</h3>
-            <p>Yearly holiday site for Clients' family. Images and layout iterated each year. Grid layout with adjustment and detail views. Detail view tagged with format so that different aspect ratios are aligned to different grid layouts. Features built on top of core Masonry plugin layout.</p>
+            <h1 class="SecondaryColor FGC">IIT Chicago IDXID Grad Class</h1>
+            <h3 class="FG">AGILE Tools Guest Lecturer / Support Aide</h3>
+            <p>Guest lectured on application of AGILE tools such as GitHub, Zenhub. Ran support for Slack and class tech use. Respositories were set up, teams populated and then notified. Lectures covered repository use, integration with Zenhub and how to create, manage and track issues, milestones and stories. Relationships between the varying tools and capabilities of AGILE dev tools was key focus.</p>
             
-            <h3>AGILE Tools Curriculim Integration</h3>
-            <p>Helped develop integration methords, materials and processes for the technical parts of AGILE tool usage. Topics such as branching, setup of Kanban and basic VCS concepts were developed / collaborated on for practical application within curriculum framework. Tutorials and examples were provided within Github itself to facilitate direct comparisons for students. These processes were adapted with professor to create </p>
+            <h3 class="FG">AGILE Tools Curriculim Integration</h3>
+            <p>Helped develop integration methods, materials and processes for technical parts of AGILE tool usage. Topics such as branching, setup of Kanban and basic VCS concepts were developed / collaborated on for practical application within curriculum framework. Tutorials and examples were provided within Github itself to facilitate direct comparisons for students. These processes were adapted with professor to create class materials based on the preliminary work and examples performed.</p>
         </div><!--END contentItem-->
         
         
         
         <div class="content item DetailColor Contact" id="c05">
-            <h1 class="SecondaryColor GB">Contact</h1>
-            Tom Leef <br>
-            <a class="LinkColor" href="mailto:Tomleef@Gmail.com?Subject=Site%20Outreach" target="_top">Tomleef@Gmail.com</a><br>
-            <a class="LinkColor" href="https://www.linkedin.com/in/tomleef/" target="_blank">LinkedIn/TomLeef</a><br>
-            <br>            
-            Reach Out. Engage. Start a discussion.<br>
+            <h1 class="SecondaryColor FGC">Skills</h1>
+            <p class="para skills">
+                 AGILE Methodology<br>HTML5<br>CSS3<br>Javascript<br>JQuery<br>PHP<br>OOP<br>Git +Hub +Zen<br>SEO<br>Wordpress<br>Graphic Design<br>Social Media Marketing<br>Digital Ecology<br>Slack<br>AGILE Tools Educator<br>Grid <br>Flexbox<br>Windows<br>Mac<br>Android<br>Browser Cross-Compatability<br>
+            </p>
+            <h1 class="SecondaryColor FGC">Contact</h1>
             <p class="para">
                  I'm available for contract and collaborative work while always keeping my ears open for that next step forward. If you're looking for a full timer with an understanding of Design and AGILE development as a mindset and conceptual endeavor, you've found one. Relatable, prompt and reliable.
             </p>
+            Reach Out. Engage. Start a discussion.<br>
+            <a class="LinkColor" href="mailto:Tomleef@Gmail.com?Subject=Site%20Outreach" target="_top">Tomleef@Gmail.com</a><br>
+            <a class="LinkColor" href="https://www.linkedin.com/in/tomleef/" target="_blank">LinkedIn/TomLeef</a><br>
+                        
+            
+            
         </div><!--END contentItem-->
         
         <div class="footer BaseColor FGC">

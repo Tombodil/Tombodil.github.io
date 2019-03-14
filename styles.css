@@ -19,9 +19,11 @@ html, body {/*Utilized to stop a bug with older browsers, with this, text alignm
 }
 .FG{
     font-family:'FranklinGothicW01-Roman';
+    font-weight: lighter;
 }
 .FGC{
     font-family:'FranklinGothicW01-Conde1119830';
+    font-weight: lighter;
 }
 .GB{
     font-family:'Garamond MT W00 Bold';
@@ -34,13 +36,13 @@ img {
 }
 body,td,th {
 	font-family:'Garamond MT W00 Regular';
-    font-weight: 200;
+    font-weight: 100 !important;
     font-style: normal;
 }
 p {
     margin-bottom: 15px;
     margin-top:0px;
-    line-height: 1.5;
+    line-height: 1.3;
 }
 ul, li{margin:0; padding:0; list-style:none;}
 
@@ -52,7 +54,9 @@ ul, li{margin:0; padding:0; list-style:none;}
 .hide {
     display: none;
 }
-
+.rightLink{
+    white-space: nowrap;
+}
 a:link {
 	text-decoration: none;
     
@@ -61,7 +65,14 @@ a:visited {
 	text-decoration: none;
     
 }
-
+.material-icons.inlineLink{
+    display: inline-block;
+    font-size: 18px !important;
+    height:9px;
+    vertical-align: middle;
+    line-height: 8px;
+    
+}
 div#wrapper{
     display: block;
     position:fixed;
@@ -117,8 +128,8 @@ div#bgWrapper{
     bottom:0;
 }
 
-#optIcon{
-    display: inline-block;
+.optIcon{
+    display: block;
     border-right:2px solid;
     padding-right: 5px;
     cursor: pointer;
@@ -127,9 +138,9 @@ div#bgWrapper{
     min-width: 48px;
     text-align: center;
     vertical-align: middle;
-    position:absolute;
-    top: 20px;
-    right:20px;
+    position:relative;
+    top: 16px;
+    right:0px;
     float: right;
 }
 
@@ -146,7 +157,11 @@ div#bgWrapper{
     background-color: #232323;
     border: 1px darkgrey;
     padding:20px;
-    
+    z-index: 50000;
+    border: 1px solid;
+    border-radius: 20px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 60px;
 }
 /*The following are HEADER stylings*/
 .header{
@@ -186,7 +201,9 @@ div#bgWrapper{
     margin-left: 0px;
     width: calc( 100% - 130px );
 }
-
+.skills{
+    column-count: 3;
+}
 /*The following are MENU stylings*/
 .item{
     height:auto;
@@ -219,24 +236,27 @@ div#bgWrapper{
     text-align: center;
     vertical-align: middle;
 }
+
 .subMenu{
     border-bottom:1px solid;
     cursor: pointer;
     margin-left: 0px;
     margin-bottom: 10px;
+    right:0;
 }
 .main{
     position: absolute;
     top: 130px;
-    left:120px;
-    right:0px;
-    bottom: 0px;
+    left:110px;
+    right:30px;
+    bottom: 10px;
     
 }
 .content{
     display: none;
     padding-right: 0px;
     padding-bottom: 30px;
+    
 }
 .subContent{
     display: none;
@@ -261,18 +281,20 @@ h1{
 .title{
     position: relative;
     font-size: 54px;
-    font-weight: 200;
-    margin-top:-13px;
+    font-weight: 100;
+    margin-top:-20px;
     padding-bottom:0px;
-    margin-bottom: -8px;
-    left:-15px;
+    margin-bottom: -4px;
+    left:-6px;
 }
 h3{
-    margin-bottom:0px;
+    font-size: 16px;
+    font-weight: 100;
+    margin-bottom:2px;
 }
 .subTitle{
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 4px;
 }
 .subtext{
   font-size: 0.8em;
@@ -296,7 +318,7 @@ h3{
 
 /*The following are color choices. They are changed with palette functioning*/
 .palette{
-    cursor: pointer;
+    cursor: pointer !important;
 }
 .PrimaryColor{
     color: #C0B283;
@@ -311,7 +333,7 @@ h3{
     border-color:#666;
 }
 .BackgroundColor{
-  background-color: #F2F2F2 !important;
+  background: #F1F1F1 ;
 }
 .BaseColor{
     color:#888;
