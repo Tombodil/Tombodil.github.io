@@ -1,7 +1,8 @@
-$("#optIcon").click(function(){
+$(".optIcon").click(function(){
     //this icon interaction allows the options panel to be opened and closed.   
     $("#optMenu").fadeToggle();
-    //$("#optIcon").toggleClass("LinkColor");
+    $(this).toggleClass("LinkColor");
+    $(this).children( ".material-icons" ).text($(this).children( ".material-icons" ).text() == 'close' ? 'menu' : 'close');
 });
 
 $(".palette").click(function(){
@@ -9,7 +10,7 @@ $(".palette").click(function(){
     var primary =$(this).attr('pri');
     var secondary =$(this).attr('sec');
     var detail =$(this).attr('det');
-    var background =$(this).attr('bak');
+    var background =$(this).attr('bgc');
     var base =$(this).attr('bas');
     var link =$(this).attr('lnk');
     //alert("palette clicked");
@@ -18,7 +19,7 @@ $(".palette").click(function(){
     $(".SecondaryColor").css("border-color" , secondary);
     $(".DetailColor").css("color" , detail);
     $(".DetailColor").css("border-color" , detail);
-    $(".BackgroundColor").css("background-color" , background);
+    $("#wrapper").css("background-color" , background);
     $(".BaseColor").css("color" , base);
     $(".LinkColor").css("color" , link);
 });
@@ -26,6 +27,8 @@ $(".palette").click(function(){
 $(".material-icons").hover(function(){
     $(this).toggleClass("LinkColor");
 });
+
+
 
 $( ".menu" ).click(function() {
     //This following code perfoems functions that are called when a menu item is clicked. In short, it reads values from the div that store the menu item clicked to toggle a corresponding container as well as store a string that will be appended to the end of the tab url. This is important because it both trackes where you're at in the page visually (by changing the url) as well as being the way you'd copy that state to share with others so that the url splitting and opening code can be ran.
@@ -42,6 +45,8 @@ $( ".menu" ).click(function() {
     //this toggles only the matching content box that corresponds to the menu item that was clicked. This way I don't have to read open/close states prior to animation. You only TOGGLE what you click. The rest have auto shut or stayed shut already.
     $(".hide").slideUp();
     $(".more").slideDown(); //those two reset the sub menu options so each opening is clean and doesn't show any previous interaction
+    $(".menu").not($(this)).removeClass("LinkColor");
+    $(this).toggleClass("LinkColor");
     
     //the following block of code updates the end of the url with the ext value defined on the menu item. This means the the url will match the category clicked
     var current_location = window.location.href; 
