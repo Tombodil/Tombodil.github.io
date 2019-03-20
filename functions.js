@@ -104,7 +104,11 @@ $( ".more" ).click(function() {
 
 //following below: this copies the url, removes the normal bit and then spilts it based on the specified # character. This works in that it has a simple in-out logic that then appends a new # to the beginning of each resulting substring. These variables are then used in order to open up the section of the site that are in the url. This means the url is a save state for the site so that specific content can be linked without needing a whole bunch of different pages. 
 $(document).ready(function(){
+    
     bgSwap();
+    
+    $('#c00').slideDown();
+    
     var urlInput = window.location.href; //creates a variable and copies url into it
     /*var urlExt01 = urlInput.substr( urlInput.indexOf("#") + 1);
     //this takes the urlInput string and removes everything before and including the # 
@@ -135,7 +139,6 @@ $(document).ready(function(){
     $( urlExt03 ).slideDown();
     //removes everything after the # then stores in variable 3*/
     
-    
 });
 
  function urlReset() {
@@ -147,7 +150,9 @@ $(document).ready(function(){
             history.pushState({
                 id: 'home'
                 }, 'Home', urlReset );
+            $('#c00').slideDown();
             }
+        
 }
 
  function subUrlReset() {
