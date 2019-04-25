@@ -19,7 +19,7 @@ $(".palette").click(function(){
     $(".SecondaryColor").css("border-color" , secondary);
     $(".DetailColor").css("color" , detail);
     $(".DetailColor").css("border-color" , detail);
-    $("#wrapper").css("background-color" , background);
+    $("#gridWrapper").css("background-color" , background);
     $(".BaseColor").css("color" , base);
     $(".LinkColor").css("color" , link);
 });
