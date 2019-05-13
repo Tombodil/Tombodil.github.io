@@ -15,7 +15,31 @@ html, body {
 img {
       border: 0;
 }
-
+#projectText{
+    /*display: none;*/
+    position: fixed;
+    left:0;
+    right:0;
+    margin: auto;
+    top:76px;
+    bottom:25px;
+    width:450px;
+    min-height: 500px;
+    
+    background-color: #666;
+    border-radius: 25px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    padding:25px;
+    z-index:100;
+    opacity:0.95;
+    color:lightGrey;
+    
+}
+.active{
+    color:white !important;
+    background-color: limeGreen !important;
+}
 .placeHolder{
     display: block;
     position: fixed;
@@ -31,8 +55,26 @@ img {
     border-radius: 25px;
     padding:25px;
 }
-
+.textButton{
+    display: inline-block;
+    position: relative;
+    clear: left;
+    float: right;
+    width: 25px;
+    text-align: center;
+    background-color:#444;    
+    z-index:25;
+    border-radius:12.5px;
+    color: grey;
+    cursor: pointer;
+    transition: 1s;
+}
+#dataLabel{
+    display: inline-block;
+    width: calc(100% - 40px);
+}
 .dataLabel{
+    display: block;
     background-color: #666;
     border-radius: 25px;
     padding:25px;
@@ -82,9 +124,9 @@ img {
     justify-content: space-around;
 }
 .dataGroup{
-    font-size: 1.2em;
+    font-size: 1.3em;
     color: lightGrey;
-    line-height: 1.5;
+    line-height: 1.2;
 }
 .infoSpan{
     display: inline-block;
@@ -107,6 +149,18 @@ img {
 /* chart formatting below */
 
 /*Formatting below is for common css adjustments*/
+h2{
+    font-size:1.4em;
+    margin-top: 0px;
+    margin-bottom:5px;
+    color:white;
+}
+p{
+    margin-bottom:20px;
+    font-size:1.24em;
+    line-height: 1.2;
+}
+
 .left{
     clear: left;
     display: inline-block;
@@ -129,3 +183,20 @@ img {
 	width: 100%;
 	clear:both;
 	}
+.hrT{
+    margin-top:2px;
+    margin-bottom:0px;
+    opacity:0.4;
+}
+.hrB{
+    margin-top:0px;
+    margin-bottom:2px;
+    color:#444;
+    opacity:0.4;
+}
+.hrText{
+    margin-top:0px;
+    margin-bottom:2px;
+    color:#444;
+    opacity:0.4;
+}

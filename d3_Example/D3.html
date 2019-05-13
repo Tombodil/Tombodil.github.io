@@ -3,17 +3,39 @@
     
     <head>
         <meta charset="utf-8">
-        <title>Rippleshot Data Display Test</title>
+        <title>Dynamic Aggregate Test</title>
         <script type="text/javascript" src="d3/d3.v3.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/testData.css">
     </head>
     
     <body>
-        <div class="placeHolder">
+        <div id="projectText">
+            <h2>Data Display Needs</h2>
+            <hr class="hrText">
+            <p>Applet request made by Chicago based company who utilizes machine learning systems to analyze financial data in order to assess client risk. Applet showing basic data aggregation was requested. It needed to be dynamic, displaying data based on the remote loaded data file. This mirrors the server-parser-client sequence chain in most apps.<br><br> 
+            D3 uses an asychronous loading system independant of initial DOM and script handling within the browser. Simply put data is loaded in when needed and binded to the DOM so that the data can be updated and mnipulated without having the page reload. This is perfect for apps where users need to log in and then need to view profile stats and values. This way the server is not constantly overloaded with update requests and the data handling isn't dependant on page refresh and update processes. </p>
             
-            <div id="dataLabel" class="dataLabel">
-                Placeholder Label
-            </div><!-- End the dataLabel Div -->
+            <h2>Concept</h2>
+            <hr class="hrText">
+            <p>The system is divided up into three main components. The html structure builds the template that the data will be mapped to. Scripts pull in the data and parse it into a usable system utilizing the D3 javascript library extention. This is then displayed using CSS formatting and any adjustments is also handled through d3's scripting. </p>
+            
+            <h2>Application</h2>
+            <hr class="hrText">
+            <p>Important data handling and html graph structure is done with D3's data and coding systems. Simple if/then statements can be added so that formatting is dependant on data values and is independant of basic html and css. <br><br> D3 is built on javascript. It loads seamlessly and intermixes with standard javascript and jQuery. The language and functions within the library are based on existing web standards. </p>
+            
+            <h2>Annotation</h2>
+            <hr class="hrText">
+            <p>The code written for this applet. Structural, script and formatting has been annotated where needed or helpful in order to best facilitate an open discussion with developers and code reviewers. Using the developer tools within in webkit browser (Chrome is a great one), the source files can be viewed for more detial about both what I was doing and how. The general developer tools will also show how the D3 code I wrote built up the html svg structures that comprise the charts shown.</p>
+        </div>
+        
+        <div class="placeHolder">
+            <div class="dataLabel"> 
+                <div id="dataLabel" >
+                    Placeholder Label                
+                </div><!-- End the dataLabel Div -->
+                <div class="textButton">?</div>
+            </div>
             
             <div id="chartDetail1" class="dataDetail">  
                 Active Cards
@@ -34,20 +56,28 @@
             
             <div id="infoContainer" class="dataInfo">  
                 <div id="Group1" class="dataGroup">
-                    Max [cards]<span id="cardMax" class="infoSpan"></span><br>
-                    Min Cards<span id="cardMin" class="infoSpan"></span><br>
-                    Start [cards]<span id="cardStart" class="infoSpan"></span><br>
+                    <span class="infoTitle">Active Cards</span><span id="lossMax" class="infoSpan">#</span><br>
+                    <hr class="hrT">
+                    Max <span id="cardMax" class="infoSpan"></span><br>
+                    Min <span id="cardMin" class="infoSpan"></span><br>
+                    Start <span id="cardStart" class="infoSpan"></span><br>
                     End Cards<span id="cardEnd" class="infoSpan"></span><br>
-                    Difference [+/-]<span id="cardDiff" class="infoSpan"></span><br>
+                    <hr class="hrB">
+                    Difference <span id="cardDiff" class="infoSpan"></span><br>
                 </div>
                 <div id="Group2" class="dataGroup">
-                    Max Loss<span id="lossMax" class="infoSpan"></span><br>
-                    Min Loss<span id="lossMin" class="infoSpan"></span><br>
-                    Start Losses<span id="lossStart" class="infoSpan"></span><br>
-                    End Losses<span id="lossEnd" class="infoSpan"></span><br>
-                    Difference [+/-]<span id="lossDiff" class="infoSpan"></span><br>
+                    <span class="infoTitle">Fraud Losses</span><span id="lossMax" class="infoSpan">$USD</span><br>
+                    <hr class="hrT">
+                    Max <span id="lossMax" class="infoSpan"></span><br>
+                    Min <span id="lossMin" class="infoSpan"></span><br>
+                    Start <span id="lossStart" class="infoSpan"></span><br>
+                    End <span id="lossEnd" class="infoSpan"></span><br>
+                    <hr class="hrB">
+                    Difference <span id="lossDiff" class="infoSpan"></span><br>
                 </div>
                 <div id="Group3" class="dataGroup">
+                    <span class="infoTitle">Time Span</span><span id="lossMax" class="infoSpan">Date</span><br>
+                    <hr class="hrT">
                     Start Date<span id="timeStart" class="infoSpan"></span><br>
                     End Date<span id="timeEnd" class="infoSpan"></span><br>
                     <!--Time Span<span id="timeTotal" class="infoSpan">[time.total]</span><br>-->
@@ -59,31 +89,35 @@
         
         
         <script type="text/javascript">
+            //below is a simple fadetoggle command for the explaination pane of the applet
+            $( ".textButton" ).click(function() {
+                $(this).toggleClass("active");
+                $( "#projectText" ).fadeToggle();
+            });
             //this is where my structural compiles and scripts through d3 - created in the dom on command so can be edited
             //var body = d3.select("body");
             //var p = body.append("p");
             //p.text("New paragraph!");
             
             /* Below I am using the D3 select method from above to create a new 'p' element that is set with text. The periods simply seperate the parts of the chain suntax which is the same as javascript, JQuery and some advanced CSS selections */
-            d3.select(".dataLabel").text("Monthly Active Cards vs Fraud Losses Over Time");
+            
+            d3.select("#dataLabel").text("Active Cards vs Fraud Losses Over Time");
             
             d3.csv("testData.csv", function(data) {
                 data.forEach(function (d) { d.Cards = +d.Cards; });
                 data.forEach(function (d) { d.Loss = +d.Loss; });
-                /*for (var i = 0; i < data.length; i++) { //This loops to find the length of the data and for each one spits out the active cards and then losses to the console. This was a binding check to make sure that the data from the remote file was being saved in a _data_ elements within the DOM
-                    console.log(data[i].Cards);
-                    console.log(data[i].Loss);
+                /*the above simply converts the prior data from the file into a numerical format for the two columns (cards, loss) in the data that are numbers. 
                 }*/
                 
                 //Width and height plus some basic variables needed for later
                 var w = 450;
                 var h = 100;
-                var max_x = 0;
-                var max_y = 0;
+                //var max_x = 0;
+                //var max_y = 0;
                 var barPadding = 4;
                 
                 
-                 // create a tooltip
+                 // create a tooltip with two locations for the output. Oner per graph.
   var TooltipT = d3.select("#tipT")
     .append("div")
     .style("opacity", 0)
@@ -95,7 +129,7 @@
     .style("opacity", 0)
     
 
-  // Three function that change the tooltip when user hover / move / leave a cell
+  // Three function that change the tooltip when user hover / move / leave a cell. One variance for each graph. Future developments of this applet with utilize a dynamic variable set to hand off the return to the output location. 
   var mouseoverL = function(d) {
     TooltipB
       .style("opacity", 1)
@@ -141,7 +175,7 @@
       .style("opacity", 1)
   }
   
-                
+                /*setting up the main data handling variables here so I don't have to retype a few times and possibly make an error*/
                 var svg = d3.select("#chart1")
                             .append("svg")
                             .attr("overflow" , "visible")
@@ -153,7 +187,7 @@
                         .enter()
                         .append("rect")
                         .attr("x", function(d, i) {
-                            return i * (w / data.length); //this is based on the width of the svg vs the number of entries in the data
+                            return i * (w / data.length); //this is based on the width of the svg vs the number of entries in the data. For this we're using an arbitrary value to scale the data because I know the upper and lower limits. I will be deploying a small update using x.Scale and y.Scale functions to auto scale the data to the output svg location. 
                         })
                         .attr("width", (w / data.length - barPadding)  )
                         .attr("y", function(d) {
@@ -181,7 +215,7 @@
                 .attr("transform", function(d,i) {    // transform all the text elements
                 return "translate(" + // First translate
                 ((i * (w / data.length)) + 12) + ", " + ( h + 5 ) + ")" + // Translation params same as your existing x & y 
-                "rotate(-90)"    ;        // THEN rotate 
+                "rotate(-90)"    ;        // THEN rotate. Finishing this syntax chain makes a group so doing the translating and rotating seperate will result in horrible alignment breaks. It all has to be done in the same function step
                 })
                 .attr('class','label');
            
@@ -224,13 +258,13 @@
                 .attr("transform", function(d,i) {    // transform all the text elements
                 return "translate(" + // First translate
                 ((i * (w / data.length)) + 12) + ", " + ( h + 5 ) + ")" + // Translation params same as your existing x & y 
-                "rotate(-90)"    ;        // THEN rotate them to give a nice slope
+                "rotate(-90)"    ;        // THEN
                 })
                 .attr('class','label');
                
                 /* We are running a text function at the core of this syntax chain. We are returning an anonymous (undeclared prior) function where we are returning the variable d value from the .(attr) - for example; d.Month returned to the text() function returns the value for the month at index 'd' in the dataset loaded from the csv file. The append 'p' creates a new paragraph for each entry created by the enter() function. This creates a new set of html markup for each index of the loaded dataset. The data() function assigns the loaded dataset to the elements 'p' in the dataspace css selector location.  */
                 
-                
+                /*Below is some basic variable handling and storage in order to compute the basic aggregation needed for the applet. This is MOSTLY javascript with D3 used to populate the data Since d3 works asynchrounously I prefer to handle all data with D3 rather then try to figure out the standard javascript process/return loop for an asynchronous load (which would mean a lot of if/for loops and logic switches :/ )*/
                 var arrayEndIndex = data.length -1;
                 //alert("array length = " + arrayEndIndex);
                 
@@ -257,13 +291,27 @@
                 d3.select("#cardMax").append("text").text( maxCards );
                 d3.select("#cardStart").append("text").text( startCards );
                 d3.select("#cardEnd").append("text").text( endCards );
-                d3.select("#cardDiff").append("text").text( diffCards );
+                d3.select("#cardDiff").append("text").text( diffCards )
+                .style("color", function(d, i) {
+                    if(diffCards > 0) {
+                        return "limegreen";
+                    } else {
+                        return "red";
+                    }
+                });//if there's more cards then started, green / otherwise red
                 
                 d3.select("#lossMax").append("text").text( maxLoss );
                 d3.select("#lossMin").append("text").text( minLoss );               
                 d3.select("#lossStart").append("text").text( startLoss );
                 d3.select("#lossEnd").append("text").text( endLoss );
-                d3.select("#lossDiff").append("text").text( diffLoss );       
+                d3.select("#lossDiff").append("text").text( diffLoss )
+                .style("color", function(d, i) {
+                    if(diffLoss < 0) {
+                        return "limegreen";
+                    } else {
+                        return "red";
+                    }
+                });    //if less loss then start green, otherwise red   
                 
                 d3.select("#timeStart").append("text").text( startTime );
                 d3.select("#timeEnd").append("text").text( endTime );
