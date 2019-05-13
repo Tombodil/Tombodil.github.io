@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <title>Rippleshot Data Display Test</title>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/testData.css">
+    </head>
+    
+    <body>
+        <div class="placeHolder">
+            
+            <div id="dataLabel" class="dataLabel">
+                Placeholder Label
+            </div><!-- End the dataLabel Div -->
+            
+            <div id="chartDetail1" class="dataDetail">  
+                Active Cards
+                <span id="tipT" class="tipRead"></span>
+            </div>
+            <div id="chart1" class="dataSpace">  
+                
+            </div><!-- End the dataSpace Div -->
+            
+            
+            <div id="chartDetail2" class="dataDetail">  
+                Fraud Loss 
+                <span id="tipB" class="tipRead"></span>
+            </div>
+            <div id="chart2"  class="dataSpace">  
+                
+            </div><!-- End the dataSpace Div -->
+            
+            <div id="infoContainer" class="dataInfo">  
+                <div id="Group1" class="dataGroup">
+                    Max [cards]<span id="cardMax" class="infoSpan"></span><br>
+                    Min Cards<span id="cardMin" class="infoSpan"></span><br>
+                    Start [cards]<span id="cardStart" class="infoSpan"></span><br>
+                    End Cards<span id="cardEnd" class="infoSpan"></span><br>
+                    Difference [+/-]<span id="cardDiff" class="infoSpan"></span><br>
+                </div>
+                <div id="Group2" class="dataGroup">
+                    Max Loss<span id="lossMax" class="infoSpan"></span><br>
+                    Min Loss<span id="lossMin" class="infoSpan"></span><br>
+                    Start Losses<span id="lossStart" class="infoSpan"></span><br>
+                    End Losses<span id="lossEnd" class="infoSpan"></span><br>
+                    Difference [+/-]<span id="lossDiff" class="infoSpan"></span><br>
+                </div>
+                <div id="Group3" class="dataGroup">
+                    Start Date<span id="timeStart" class="infoSpan"></span><br>
+                    End Date<span id="timeEnd" class="infoSpan"></span><br>
+                    <!--Time Span<span id="timeTotal" class="infoSpan">[time.total]</span><br>-->
+                </div>
+                
+            </div>
+            
+        </div><!-- End the placeHolder Div -->
+        
+        
+        <script type="text/javascript">
+            //this is where my structural compiles and scripts through d3 - created in the dom on command so can be edited
+            //var body = d3.select("body");
+            //var p = body.append("p");
+            //p.text("New paragraph!");
+            
+            /* Below I am using the D3 select method from above to create a new 'p' element that is set with text. The periods simply seperate the parts of the chain suntax which is the same as javascript, JQuery and some advanced CSS selections */
+            d3.select(".dataLabel").text("Monthly Active Cards vs Fraud Losses Over Time");
+            
+            d3.csv("testData.csv", function(data) {
+                data.forEach(function (d) { d.Cards = +d.Cards; });
+                data.forEach(function (d) { d.Loss = +d.Loss; });
+                /*for (var i = 0; i < data.length; i++) { //This loops to find the length of the data and for each one spits out the active cards and then losses to the console. This was a binding check to make sure that the data from the remote file was being saved in a _data_ elements within the DOM
+                    console.log(data[i].Cards);
+                    console.log(data[i].Loss);
+                }*/
+                
+                //Width and height plus some basic variables needed for later
+                var w = 450;
+                var h = 100;
+                var max_x = 0;
+                var max_y = 0;
+                var barPadding = 4;
+                
+                
+                 // create a tooltip
+  var TooltipT = d3.select("#tipT")
+    .append("div")
+    .style("opacity", 0)
+    
+    
+  
+  var TooltipB = d3.select("#tipB")
+    .append("div")
+    .style("opacity", 0)
+    
+
+  // Three function that change the tooltip when user hover / move / leave a cell
+  var mouseoverL = function(d) {
+    TooltipB
+      .style("opacity", 1)
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
+      .style( "position","absolute")
+      
+  }
+  var mousemoveL = function(d) {
+    TooltipB
+      .html(d.Loss)
+      
+  }
+  var mouseleaveL = function(d) {
+    TooltipB
+      .style("opacity", 0)
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 1)
+  }
+  
+  
+  var mouseoverC = function(d) {
+    TooltipT
+      .style("opacity", 1)
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
+      .style( "position","absolute")
+      
+  }
+  var mousemoveC = function(d) {
+    TooltipT
+      .html(d.Cards)
+      
+  }
+  var mouseleaveC = function(d) {
+    TooltipT
+      .style("opacity", 0)
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 1)
+  }
+  
+                
+                var svg = d3.select("#chart1")
+                            .append("svg")
+                            .attr("overflow" , "visible")
+                            .attr("width", w)
+                            .attr("height", h);
+                
+                        svg.selectAll("rect")
+                        .data(data)
+                        .enter()
+                        .append("rect")
+                        .attr("x", function(d, i) {
+                            return i * (w / data.length); //this is based on the width of the svg vs the number of entries in the data
+                        })
+                        .attr("width", (w / data.length - barPadding)  )
+                        .attr("y", function(d) {
+                            return h - (d.Cards / 2000);  //Height minus data value
+                        })
+                        .attr("height", function(d) {
+                            return  (d.Cards / 2000);  //Just the data value
+                        })
+                        .style("fill","lightgrey")
+                        .attr('class','rectangle')
+                        .on("mouseover", mouseoverC)
+                        .on("mousemove", mousemoveC)
+                        .on("mouseleave", mouseleaveC)
+                        ;
+                
+            svg.selectAll(".label text") //this does the text label
+			   .data(data)
+			   .enter()
+			   .append("text")
+			   .text(function(d) {
+			   		return d.Month;
+			   })                
+			   .style("text-anchor", "end")//changes the orientation anchor to end of line
+                .style("fill","white")
+                .attr("transform", function(d,i) {    // transform all the text elements
+                return "translate(" + // First translate
+                ((i * (w / data.length)) + 12) + ", " + ( h + 5 ) + ")" + // Translation params same as your existing x & y 
+                "rotate(-90)"    ;        // THEN rotate 
+                })
+                .attr('class','label');
+           
+                var svg2 = d3.select("#chart2")
+                            .append("svg")
+                            .attr("overflow" , "visible")
+                            .attr("width", w)
+                            .attr("height", h);
+                
+                        svg2.selectAll("rect")//This is mapping the second group of data.
+                        .data(data)
+                        .enter()
+                        .append("rect")
+                        .attr("x", function(d, i) {
+                            return i * (w / data.length); //this is based on the width of the svg vs the number of entries in the data
+                        })
+                        .attr("width", w / data.length - barPadding)
+                        .attr("y", function(d) {
+                            return h - (d.Loss / 2000);  //Height minus data value
+                        })
+                        .attr("height", function(d) {
+                            return  (d.Loss / 2000);  //Just the data value
+                        })
+                        .style("fill","darkred")
+                        
+                        .on("mouseover", mouseoverL)
+                        .on("mousemove", mousemoveL)
+                        .on("mouseleave", mouseleaveL)
+                        ;
+                        
+            svg2.selectAll(".label text") //also a text label
+			   .data(data)
+			   .enter()
+			   .append("text")
+			   .text(function(d) {
+			   		return d.Month;
+			   })                
+			   .style("text-anchor", "end")//changes the orientation anchor to end of line
+                .style("fill","white")
+                .attr("transform", function(d,i) {    // transform all the text elements
+                return "translate(" + // First translate
+                ((i * (w / data.length)) + 12) + ", " + ( h + 5 ) + ")" + // Translation params same as your existing x & y 
+                "rotate(-90)"    ;        // THEN rotate them to give a nice slope
+                })
+                .attr('class','label');
+               
+                /* We are running a text function at the core of this syntax chain. We are returning an anonymous (undeclared prior) function where we are returning the variable d value from the .(attr) - for example; d.Month returned to the text() function returns the value for the month at index 'd' in the dataset loaded from the csv file. The append 'p' creates a new paragraph for each entry created by the enter() function. This creates a new set of html markup for each index of the loaded dataset. The data() function assigns the loaded dataset to the elements 'p' in the dataspace css selector location.  */
+                
+                
+                var arrayEndIndex = data.length -1;
+                //alert("array length = " + arrayEndIndex);
+                
+                var dataArray = data;
+                
+                var maxCards = d3.max(data.map(d => d.Cards));
+                var minCards = d3.min(data.map(d => d.Cards));                
+                var startCards = dataArray[0].Cards;
+                var endCards = dataArray[ arrayEndIndex ].Cards;
+                var diffCards = Math.floor(endCards - startCards) ;
+                //alert( diffCards );
+                
+                var maxLoss = d3.max(data.map(d => d.Loss));
+                var minLoss = d3.min(data.map(d => d.Loss));
+                var startLoss = dataArray[0].Loss;
+                var endLoss = dataArray[ arrayEndIndex ].Loss;
+                var diffLoss = Math.floor(endLoss - startLoss) ;
+                //alert( diffLoss );
+                
+                var startTime= dataArray[0].Month;
+                var endTime= dataArray[ arrayEndIndex ].Month;
+                
+                d3.select("#cardMin").append("text").text( minCards );
+                d3.select("#cardMax").append("text").text( maxCards );
+                d3.select("#cardStart").append("text").text( startCards );
+                d3.select("#cardEnd").append("text").text( endCards );
+                d3.select("#cardDiff").append("text").text( diffCards );
+                
+                d3.select("#lossMax").append("text").text( maxLoss );
+                d3.select("#lossMin").append("text").text( minLoss );               
+                d3.select("#lossStart").append("text").text( startLoss );
+                d3.select("#lossEnd").append("text").text( endLoss );
+                d3.select("#lossDiff").append("text").text( diffLoss );       
+                
+                d3.select("#timeStart").append("text").text( startTime );
+                d3.select("#timeEnd").append("text").text( endTime );
+            });
+            
+        </script> <!--End D3 Code-->
+    </body>
+    
+</html>   
