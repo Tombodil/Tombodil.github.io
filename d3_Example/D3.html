@@ -29,32 +29,34 @@
             <p>The code written for this applet. Structural, script and formatting has been annotated where needed or helpful in order to best facilitate an open discussion with developers and code reviewers. Using the developer tools within in webkit browser (Chrome is a great one), the source files can be viewed for more detial about both what I was doing and how. The general developer tools will also show how the D3 code I wrote built up the html svg structures that comprise the charts shown.</p>
         </div>
         
+        
+        <div class="placeholderTop"></div>
+        
         <div class="placeHolder">
-            <div class="dataLabel"> 
+            
+            <div class="topLabel"> 
                 <div id="dataLabel" >
                     Placeholder Label                
                 </div><!-- End the dataLabel Div -->
                 <div class="textButton">?</div>
             </div>
             
-            <div id="chartDetail1" class="dataDetail">  
-                Active Cards
-                <span id="tipT" class="tipRead"></span>
-            </div>
-            <div id="chart1" class="dataSpace">  
+            <div class="infoRow">
                 
-            </div><!-- End the dataSpace Div -->
-            
-            
-            <div id="chartDetail2" class="dataDetail">  
-                Fraud Loss 
-                <span id="tipB" class="tipRead"></span>
-            </div>
-            <div id="chart2"  class="dataSpace">  
+            <div class="chartGroup topAlign">
+                <div id="chartDetail1" class="dataDetail">  
+                    <span class="spanTitle">Active Cards</span>
+                    <span id="tipT" class="tipRead"></span>
+                </div>
+                <div id="chart1" class="dataSpace">  
                 
-            </div><!-- End the dataSpace Div -->
+                </div><!-- End the dataSpace Div -->
+            </div>
             
-            <div id="infoContainer" class="dataInfo">  
+            <div id="infoContainer" class="dataInfo topAlign">  
+                <div id="Group0" class="dataGroup">
+                    <span class="spanTitle">Details</span>
+                </div>
                 <div id="Group1" class="dataGroup">
                     <span class="infoTitle">Active Cards</span><span class="infoSpan">#</span><br>
                     <hr class="hrT">
@@ -75,7 +77,7 @@
                     <hr class="hrB">
                     Difference <span id="lossDiff" class="infoSpan"></span><br>
                 </div>
-                <div id="Group3" class="dataGroup">
+                <div id="Group3" class="dataGroup ">
                     <span class="infoTitle">Time Span</span><span id="lossMax" class="infoSpan">Date</span><br>
                     <hr class="hrT">
                     Start Date<span id="timeStart" class="infoSpan"></span><br>
@@ -84,6 +86,28 @@
                 </div>
                 
             </div>
+            
+            
+            
+            <div class="chartGroup topAlign">
+                <div id="chartDetail2" class="dataDetail">  
+                    <span class="spanTitle">Fraud Loss</span> 
+                    <span id="tipB" class="tipRead"></span>
+                </div>
+                <div id="chart2"  class="dataSpace">  
+                
+                </div><!-- End the dataSpace Div -->
+            </div>
+            
+            
+                <div class="tableDiv">
+                <span class="spanTitle">Data</span>
+                    <div class="tableData"></div>
+                </div>
+            
+                
+            </div><!--End infoRow-->
+            
             
         </div><!-- End the placeHolder Div -->
         
@@ -98,7 +122,40 @@
             //var body = d3.select("body");
             //var p = body.append("p");
             //p.text("New paragraph!");
-            
+            var tabulate = function (data,columns) {
+            var table = d3.select('.tableData').append('table')
+	           var thead = table.append('thead')
+	           var tbody = table.append('tbody')
+
+               thead.append('tr')
+               .selectAll('th')
+                   .data(columns)
+                   .enter()
+                    .append('th')
+                   .text(function (d) { return d }).style("color","#ccc").style("text-decoration","underline")
+
+               var rows = tbody.selectAll('tr')
+                .data(data)
+                   .enter()
+               .append('tr')
+
+               var cells = rows.selectAll('td')
+                   .data(function(row) {
+                      return columns.map(function (column) {
+                         return { column: column, value: row[column] }
+                   })
+                })
+                .enter()
+                .append('td')
+                .text(function (d) { return d.value }).style("color","#778899")
+
+            return table;
+                }
+
+            d3.csv('testData.csv',function (data) {
+                var columns = ['Month','Cards','Loss']
+              tabulate(data,columns)
+            })
             /* Below I am using the D3 select method from above to create a new 'p' element that is set with text. The periods simply seperate the parts of the chain suntax which is the same as javascript, JQuery and some advanced CSS selections */
             
             d3.select("#dataLabel").text("Active Cards vs Fraud Losses Over Time");
@@ -110,70 +167,97 @@
                 }*/
                 
                 //Width and height plus some basic variables needed for later
-                var w = 450;
-                var h = 100;
+                var w = $(".dataSpace").width();//600;
+                
+                //alert(w);
+                var h = 250;
                 //var max_x = 0;
-                //var max_y = 0;
+                var max_y = 100;
                 var barPadding = 4;
+                var arrayEndIndex = data.length -1;
+                //alert("array length = " + arrayEndIndex);
+                
+                var dataArray = data;
+                var minBarHeight = 3; //this adds a buffer of three pixels onto the height of any chart bars, this allows the lowest entry to be hover selected, as normally it would be the same as the chart min x value and calculate a height of zero pixels. Three is roughly enough to get a mouse cursor on. 
+                //the bleow values are simple variables calculated on dataset 'data' that are used in order to scale the graph based on min and max values as well as be able to give specific aggregated data based on the dynamic loaded dataset.
+                var maxCards = d3.max(data.map(d => d.Cards));
+                var minCards = d3.min(data.map(d => d.Cards));                
+                var startCards = dataArray[0].Cards;
+                var endCards = dataArray[ arrayEndIndex ].Cards;
+                var diffCards = Math.floor(endCards - startCards) ;
+                var rangeCards = maxCards - minCards;
+                //alert("card range is " + rangeCards);
+                //alert( diffCards );
+                
+                var maxLoss = d3.max(data.map(d => d.Loss));
+                var minLoss = d3.min(data.map(d => d.Loss));
+                var startLoss = dataArray[0].Loss;
+                var endLoss = dataArray[ arrayEndIndex ].Loss;
+                var diffLoss = Math.floor(endLoss - startLoss) ;
+                var rangeLoss = maxLoss - minLoss;
+                //alert( diffLoss );
+                
+                var startTime= dataArray[0].Month;
+                var endTime= dataArray[ arrayEndIndex ].Month;
                 
                 
                  // create a tooltip with two locations for the output. Oner per graph.
-  var TooltipT = d3.select("#tipT")
-    .append("div")
-    .style("opacity", 0)
-    
-    
-  
-  var TooltipB = d3.select("#tipB")
-    .append("div")
-    .style("opacity", 0)
-    
+                  var TooltipT = d3.select("#tipT")
+                    .append("div")
+                    .style("opacity", 0)
 
-  // Three function that change the tooltip when user hover / move / leave a cell. One variance for each graph. Future developments of this applet with utilize a dynamic variable set to hand off the return to the output location. 
-  var mouseoverL = function(d) {
-    TooltipB
-      .style("opacity", 1)
-    d3.select(this)
-      .style("stroke", "black")
-      .style("opacity", 1)
-      .style( "position","absolute")
-      
-  }
-  var mousemoveL = function(d) {
-    TooltipB
-      .html(d.Loss)
-      
-  }
-  var mouseleaveL = function(d) {
-    TooltipB
-      .style("opacity", 0)
-    d3.select(this)
-      .style("stroke", "none")
-      .style("opacity", 1)
-  }
-  
-  
-  var mouseoverC = function(d) {
-    TooltipT
-      .style("opacity", 1)
-    d3.select(this)
-      .style("stroke", "black")
-      .style("opacity", 1)
-      .style( "position","absolute")
-      
-  }
-  var mousemoveC = function(d) {
-    TooltipT
-      .html(d.Cards)
-      
-  }
-  var mouseleaveC = function(d) {
-    TooltipT
-      .style("opacity", 0)
-    d3.select(this)
-      .style("stroke", "none")
-      .style("opacity", 1)
-  }
+
+
+                  var TooltipB = d3.select("#tipB")
+                    .append("div")
+                    .style("opacity", 0)
+
+
+                  // Three function that change the tooltip when user hover / move / leave a cell. One variance for each graph. Future developments of this applet with utilize a dynamic variable set to hand off the return to the output location. 
+                  var mouseoverL = function(d) {
+                    TooltipB
+                      .style("opacity", 1)
+                    d3.select(this)
+                      .style("stroke", "red")
+                      .style("opacity", 1)
+                      .style( "position","absolute")
+
+                  }
+                  var mousemoveL = function(d) {
+                    TooltipB
+                      .html(d.Loss + " / " + maxLoss)
+
+                  }
+                  var mouseleaveL = function(d) {
+                    TooltipB
+                      .style("opacity", 0)
+                    d3.select(this)
+                      .style("stroke", "none")
+                      .style("opacity", 1)
+                  }
+
+
+                  var mouseoverC = function(d) {
+                    TooltipT
+                      .style("opacity", 1)
+                    d3.select(this)
+                      .style("stroke", "white")
+                      .style("opacity", 1)
+                      .style( "position","absolute")
+
+                  }
+                  var mousemoveC = function(d) {
+                    TooltipT
+                      .html(d.Cards + " / " + maxCards)
+
+                  }
+                  var mouseleaveC = function(d) {
+                    TooltipT
+                      .style("opacity", 0)
+                    d3.select(this)
+                      .style("stroke", "none")
+                      .style("opacity", 1)
+                  }
   
                 /*setting up the main data handling variables here so I don't have to retype a few times and possibly make an error*/
                 var svg = d3.select("#chart1")
@@ -181,6 +265,8 @@
                             .attr("overflow" , "visible")
                             .attr("width", w)
                             .attr("height", h);
+                
+                
                 
                         svg.selectAll("rect")
                         .data(data)
@@ -191,10 +277,13 @@
                         })
                         .attr("width", (w / data.length - barPadding)  )
                         .attr("y", function(d) {
-                            return h - (d.Cards / 2000);  //Height minus data value
+                            return h - ( h * ((d.Cards - minCards) / rangeCards ) );  //Height minus data value
+                            
                         })
                         .attr("height", function(d) {
-                            return  (d.Cards / 2000);  //Just the data value
+                            //return  (d.Cards / 2000);  //Just the data value
+                            return ( h * ((d.Cards - minCards) / rangeCards ) ) + minBarHeight;
+                            
                         })
                         .style("fill","lightgrey")
                         .attr('class','rectangle')
@@ -214,7 +303,7 @@
                 .style("fill","white")
                 .attr("transform", function(d,i) {    // transform all the text elements
                 return "translate(" + // First translate
-                ((i * (w / data.length)) + 12) + ", " + ( h + 5 ) + ")" + // Translation params same as your existing x & y 
+                ((i * (w / data.length)) + 12) + ", " + ( h + minBarHeight + 8 ) + ")" + // Translation params same as your existing x & y 
                 "rotate(-90)"    ;        // THEN rotate. Finishing this syntax chain makes a group so doing the translating and rotating seperate will result in horrible alignment breaks. It all has to be done in the same function step
                 })
                 .attr('class','label');
@@ -234,10 +323,10 @@
                         })
                         .attr("width", w / data.length - barPadding)
                         .attr("y", function(d) {
-                            return h - (d.Loss / 2000);  //Height minus data value
+                            return h - ( h * ((d.Loss - minLoss) / rangeLoss ) );  //Height minus data value
                         })
                         .attr("height", function(d) {
-                            return  (d.Loss / 2000);  //Just the data value
+                            return ( h * ((d.Loss - minLoss) / rangeLoss ) + minBarHeight);  //Just the data value
                         })
                         .style("fill","darkred")
                         
@@ -257,7 +346,7 @@
                 .style("fill","white")
                 .attr("transform", function(d,i) {    // transform all the text elements
                 return "translate(" + // First translate
-                ((i * (w / data.length)) + 12) + ", " + ( h + 5 ) + ")" + // Translation params same as your existing x & y 
+                ((i * (w / data.length)) + 12) + ", " + ( h + minBarHeight + 8 ) + ")" + // Translation params same as your existing x & y 
                 "rotate(-90)"    ;        // THEN
                 })
                 .attr('class','label');
@@ -265,27 +354,7 @@
                 /* We are running a text function at the core of this syntax chain. We are returning an anonymous (undeclared prior) function where we are returning the variable d value from the .(attr) - for example; d.Month returned to the text() function returns the value for the month at index 'd' in the dataset loaded from the csv file. The append 'p' creates a new paragraph for each entry created by the enter() function. This creates a new set of html markup for each index of the loaded dataset. The data() function assigns the loaded dataset to the elements 'p' in the dataspace css selector location.  */
                 
                 /*Below is some basic variable handling and storage in order to compute the basic aggregation needed for the applet. This is MOSTLY javascript with D3 used to populate the data Since d3 works asynchrounously I prefer to handle all data with D3 rather then try to figure out the standard javascript process/return loop for an asynchronous load (which would mean a lot of if/for loops and logic switches :/ )*/
-                var arrayEndIndex = data.length -1;
-                //alert("array length = " + arrayEndIndex);
                 
-                var dataArray = data;
-                
-                var maxCards = d3.max(data.map(d => d.Cards));
-                var minCards = d3.min(data.map(d => d.Cards));                
-                var startCards = dataArray[0].Cards;
-                var endCards = dataArray[ arrayEndIndex ].Cards;
-                var diffCards = Math.floor(endCards - startCards) ;
-                //alert( diffCards );
-                
-                var maxLoss = d3.max(data.map(d => d.Loss));
-                var minLoss = d3.min(data.map(d => d.Loss));
-                var startLoss = dataArray[0].Loss;
-                var endLoss = dataArray[ arrayEndIndex ].Loss;
-                var diffLoss = Math.floor(endLoss - startLoss) ;
-                //alert( diffLoss );
-                
-                var startTime= dataArray[0].Month;
-                var endTime= dataArray[ arrayEndIndex ].Month;
                 
                 d3.select("#cardMin").append("text").text( minCards );
                 d3.select("#cardMax").append("text").text( maxCards );
